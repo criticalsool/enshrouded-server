@@ -15,7 +15,6 @@ sudo -u enshrouded -s
 ```
 ### Download server files
 ```bash
-cd
 /usr/games/steamcmd +@sSteamCmdForcePlatformType windows +force_install_dir /home/enshrouded/enshroudedserver +login anonymous +app_update 2278520 +quit
 ```
 
