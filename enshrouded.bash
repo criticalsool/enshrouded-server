@@ -46,8 +46,3 @@ EOF
 
 # Enable enshrouded service at startup
 systemctl enable enshrouded
-
-systemctl status enshrouded
-
-# Log to enshrouded user
-#sudo -u enshrouded -s
