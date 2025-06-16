@@ -19,8 +19,9 @@ apt-get update
 apt-get install -y --install-recommends winehq-staging
 
 # Install steamcmd
-apt-add-repository non-free non-free-firmware
-apt-get update
+apt-add-repository -y non-free non-free-firmware
+echo steam steam/license note '' | debconf-set-selections
+echo steam steam/question select "I AGREE" | debconf-set-selections
 apt-get install steamcmd
 
 # Add enshrouded user

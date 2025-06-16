@@ -12,10 +12,14 @@ bash enshrouded.bash
 ### Log in with enshrouded user
 ```bash
 sudo -u enshrouded -s
+```
+### Download server files
+```bash
 cd
 /usr/games/steamcmd +@sSteamCmdForcePlatformType windows +force_install_dir /home/enshrouded/enshroudedserver +login anonymous +app_update 2278520 +quit
 ```
 
+### Start server
 ```bash
 wine ~/enshroudedserver/enshrouded_server.exe
 ```
