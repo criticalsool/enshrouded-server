@@ -42,5 +42,5 @@ crontab -e
 ```bash
 mkdir /home/enshrouded/backups
 crontab -e
-0 7 * * * tar -czvf /home/enshrouded/backups/enshrouded_backup_$(date +%Y-%m-%d).tar.gz -C /home/enshrouded/enshroudedserver/savegame/ .
+0 7 * * * tar -czvf /home/enshrouded/backups/enshrouded_backup_$(date +\%Y-\%m-\%d).tar.gz -C /home/enshrouded/enshroudedserver/savegame/ .
 ```
