@@ -53,3 +53,18 @@ EOF
 
 # Enable enshrouded service at startup
 systemctl enable enshrouded
+
+# Create directories
+mkdir -pv /home/enshrouded/enshroudedserver
+mkdir -pv /home/enshrouded/scripts
+mkdir -pv /home/enshrouded/backups
+
+# Copy backups scripts
+cp scripts/* /home/enshrouded/scripts
+
+# Set permissions
+chown -Rv enshrouded: /home/enshrouded
+chmod -Rv o-rwx /home/enshrouded
+
+# End print
+echo "Installation completed, to configure and setup automation, please read the README.md file"
