@@ -1,5 +1,11 @@
 #! /bin/bash
 
+# Check root
+if [ "$EUID" -ne 0 ]; then
+    echo -e "\e[31mPlease run this script as root\e[0m"
+    exit
+fi
+
 # Install needed packages
 apt-get update
 apt-get install -y curl nano ufw wget software-properties-common lsb-release

@@ -1,5 +1,5 @@
 # Enshrouded server
-Enshrouded Dedicated Server install script on Debian
+Enshrouded Dedicated Server install and backups scripts on Debian
 
 # Install
 ```bash
@@ -9,38 +9,37 @@ bash enshrouded.bash
 ```
 
 ## First start
-### Log in with enshrouded user
+> As root
 ```bash
-sudo -u enshrouded -s
+systemctl start enshrouded.service
 ```
-### Download server files
-```bash
-/usr/games/steamcmd +@sSteamCmdForcePlatformType windows +force_install_dir /home/enshrouded/enshroudedserver +login anonymous +app_update 2278520 +quit
-```
-
-### Start server
-```bash
-wine ~/enshroudedserver/enshrouded_server.exe
-```
-> Once server is started exit with `CTRL+C`
 
 ### Configure
+> As enshrouded
 ```
 nano enshroudedserver/enshrouded_server.json
 ```
 
 # Automation
 ## Auto restart
-> As root
+> As root : `sudo su -`
 ```bash
 crontab -e
-10 7 * * * systemctl restart enshrouded.service
+55 6 * * * systemctl stop enshrouded.service
+5 7 * * * systemctl start enshrouded.service
 ```
+> Stops at 6:55am and start again at 7:05am
 
 ## Auto backup
-> As enshrouded
+> As enshrouded : `sudo -u enshrouded -s`
 ```bash
-mkdir /home/enshrouded/backups
 crontab -e
-0 7 * * * tar -czvf /home/enshrouded/backups/enshrouded_backup_$(date +\%Y-\%m-\%d).tar.gz -C /home/enshrouded/enshroudedserver/savegame/ .
+0 7 * * * /home/enshrouded/scripts/backup-daily.bash
+1 * * * * /home/enshrouded/scripts/backup-hourly.bash
 ```
+> Backup every day at 7am and every hours
+
+- Daily backups : map + config + logs
+- Hourly backups : map
+
+> Old backups are removed automaticaly
